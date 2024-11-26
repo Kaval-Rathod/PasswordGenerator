@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+    }
+    includeBuild("../node_modules/@react-native/gradle-plugin")
+}
+
+plugins {
+    id("com.facebook.react")
+}
+
+rootProject.name = "PasswordGenerator"
+
+include(":app")
+includeBuild("../node_modules/@react-native/gradle-plugin")
+
+// Safe fallback for autolinking
+try {
+    def reactNativeSettings = extensions.getByName("reactSettings")
+    reactNativeSettings.autolinkLibraries()
+} catch (Exception e) {
+    println("Autolinking fallback: ${e.message}")
+}
